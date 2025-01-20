@@ -25,5 +25,60 @@ THis example is to generate a public-private key pair using Ellipic Curve Crypto
 ### Activity Diagram
 
 ### Helper Functions
+In the RunCommand activity diagram, there are three opauqe functions. The first function is some javascript to determine the project directory. This is important becasue the default working directory is protected and users cannot save external scripts. Also, it is much easier to manage the project when the .MDZIP file and the .py files are co-located.
+
+```
+//java
+// Get the current project directory
+var project = com.nomagic.magicdraw.core.Application.getInstance().getProject();
+var projectDir = project.getDirectory();
+projectDir; // Return the directory path
+```
+
+The second opaque function is to create a command line string that would be representative of the actual characters typed into a terminal. The value of `cmd` should execute at the command prompt.
+
+```
+#/env/bin/python2
+import os
+command = os.path.join(projectDir,script)
+cmd = 'python "{}" "{}"'.format(command,arguments)
+```
+
+The third function, which is the core of the process, uses the Python2 subprocess module to call the external function. The command generates 3 outputs, a return code, standard out and standard error. A try/except block is included with corresponding output to aid in the troubleshooting of the scripts.  
+
+```
+#/env/bin/python2
+import subprocess
+"""
+    Runs a command-line system call in Python 2.
+    Args:
+        cmd (str): a string prepresenting the command and command line arguments to execute.
+    Returns:
+        stdout (string)
+        stderr (string)
+        returncode (integer)
+"""
+try:
+    process = subprocess.Popen(
+        cmd,
+        stdout=subprocess.PIPE,  # Capture standard output
+        stderr=subprocess.PIPE,  # Capture standard error
+        shell=True  # Run in the shell, set to False if cmd is a list of arguments
+    )
+    # Communicate to fetch stdout and stderr
+    stdout, stderr = process.communicate()
+    returncode =  process.returncode
+    if returncode is None:
+        returncode = 0
+except Exception as e:
+    stdout = ""
+    stderr = str(e)
+    returncode = -1
+```
+
+The variables, input and output are shown in the completed activity diagram.
+
+![RunCommand.svg](RunCommand.svg)
+
 
 ## Results
