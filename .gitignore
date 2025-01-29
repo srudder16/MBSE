@@ -1,2 +1,4 @@
 
 *.bak
+OneNet/private_key.der
+OneNet/public_key.der
