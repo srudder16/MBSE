@@ -56,6 +56,10 @@ The `deriveKey.py` script uses a salt to add entropy to the hash and create a sa
 #### Plain Text
 The plain text input for this example is defined similarly to the password. The example is a snippet from Teddy Roosevelt's famous *Man in the Arena* speech.
 
+```
+This is plain text from Teddy Roosevelt: It is not the critic who counts; not the man who points out how the strong man stumbles, or where the doer of deeds could have done them better. The credit belongs to the man who is actually in the arena, whose face is marred by dust and sweat and blood; who strives valiantly; who errs, who comes short again and again, because there is no effort without error and shortcoming; but who does actually strive to do the deeds; who knows great enthusiasms, the great devotions; who spends himself in a worthy cause; who at the best knows in the end the triumph of high achievement, and who at the worst, if he fails, at least fails while daring greatly, so that his place shall never be with those cold and timid souls who neither know victory nor defeat.
+```
+
 ![GetPlainText](GetPlainText.png)
 
 The activity of collecting the plain text from the user or subsystem is beyond the scope of this example. Therefore, we chose to "hardcode" the plain text, much like we did for the password. Practical systems will have some sort of plain text gathering and processing functions. Also, plain text does not have to be human-readable; it is simply a term used in cryptography for the data that gets protected.
