@@ -60,7 +60,7 @@ The plain text input for this example is defined similarly to the password. The 
 This is plain text from Teddy Roosevelt: It is not the critic who counts; not the man who points out how the strong man stumbles, or where the doer of deeds could have done them better. The credit belongs to the man who is actually in the arena, whose face is marred by dust and sweat and blood; who strives valiantly; who errs, who comes short again and again, because there is no effort without error and shortcoming; but who does actually strive to do the deeds; who knows great enthusiasms, the great devotions; who spends himself in a worthy cause; who at the best knows in the end the triumph of high achievement, and who at the worst, if he fails, at least fails while daring greatly, so that his place shall never be with those cold and timid souls who neither know victory nor defeat.
 ```
 
-![GetPlainText](GetPlainText.svg)
+![GetPlainText](GetPlainText.png)
 
 The activity of collecting the plain text from the user or subsystem is beyond the scope of this example. Therefore, we chose to "hard-code" the plain text, much like we did for the password. Practical systems will have some sort of plain text gathering and processing functions. Also, plain text does not have to be human readable information, it's simply a term used in cryptography for the data that gets protected.
 
@@ -90,7 +90,7 @@ Note: to reverse this process and recover the plain text message, four data are 
 #### RunCommmand
 The utility to run external commands is saved in a separate file and importable as a package. The activity diagram for RunCommand is as follows:
 
-![RunCommand](RunComand.svg)
+![RunCommand](RunCommand.svg)
 
 ## Summary
 This example gives a demonstration on how to generate authentic cryptographic artifacts for use in CATIA MSOSA behavior modeling and simulation. Including these external functions capable of cryptographic operations ensures the activities are properly modeled and the sequence of actions is realistic. 
