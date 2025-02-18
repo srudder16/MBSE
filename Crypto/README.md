@@ -1,5 +1,5 @@
 # Calling External Functions
-CATAI Magic Systems of Systems Architect (MSOSA) has a great feature to call external programs for analysis. These are called using Opaque Actions. This example demonstrates how to call Python 3 functions from MSOSA Activity Diagrams.
+CATIA Magic Systems of Systems Architect (MSOSA) has a great feature to call external programs for analysis. These are called using Opaque Actions. This example demonstrates how to call Python 3 functions from MSOSA Activity Diagrams.
 
 This directory should contain the following
  * .MDZIP files, which are the native file for MSOSA.
