@@ -1,6 +1,7 @@
 import sys
 import os
 import base64
+import json
 import argparse
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
@@ -10,42 +11,37 @@ https://cryptography.io/en/latest/hazmat/primitives/symmetric-encryption/
 
 def main():
     # Parse command-line arguments
-    parser = argparse.ArgumentParser(description="Create a ciphertext from a plaintext using AES in CFB mode.")
+    parser = argparse.ArgumentParser(description="Create a plaintext from a ciphertext using AES in CFB mode.")
     parser.add_argument(
         "key",
         type=str,
         help="A cryptographic key in Base64 format"
     )
     parser.add_argument(
-        "plainText",
+        "cipherText",
         type=str,
-        help="plainText in Base64 format"
+        help="cipherText and initialization vector (iv) in json format."
     )
     args = parser.parse_args()
     # Decode the key and plaintext from base64 arguments
     key = base64.b64decode(args.key)
-    plainText = base64.b64decode(args.plainText)
-
-    #Write to a file for troubleshooting
-    # with open("key.bin", 'wb') as f:
-    #     f.write(key)
-
+    
+    input = args.cipherText.split('.')
+    #extract cipherText
+    cipherText = base64.b64decode(input[0])
     # Initialization vector should be randomly generated and the same length as the key
-    iv = os.urandom(len(key))
+    iv = base64.b64decode(input[1])
+
     # Create a cipher object
     cipher = Cipher(algorithms.AES(key), modes.CFB(iv))
-    # Create an encryptor object
-    encryptor = cipher.encryptor()
-    # Encrypt the plaintext
-    ciphertext = encryptor.update(plainText) + encryptor.finalize()
+    # Create a decryptor object
+    decryptor = cipher.decryptor()
+    # Decrypt the cipher text
+    plaintext = decryptor.update(cipherText) + decryptor.finalize()
     # Output the ciphertext and iv to stdout
-    sys.stdout.write(
-        base64.b64encode(ciphertext).decode('ascii') + 
-        "." + 
-        base64.b64encode(iv).decode('ascii'))
+    sys.stdout.write(plaintext.decode('ascii'))
     # Return a successful exit status
     sys.exit(1)
-
 
 if __name__ == "__main__":
     # Get the directory of the current script
